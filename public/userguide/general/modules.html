@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>程式碼模組 &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="管理你的應用程式" href="managing_apps.html" />
+    <link rel="prev" title="AJAX 請求" href="ajax.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DD4814" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ci-logo-text.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">系統需求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">貢獻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 規範</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">建構第一個應用程式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">靜態頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">新聞頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">建立新聞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">結論</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">一般主題</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">組態設定檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">全域函數與常數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">記錄日誌資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">錯誤處理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">網頁快取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ajax.html">AJAX 請求</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">程式碼模組</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">管理你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">處理多種環境</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">資料庫操作</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">連接你的資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">詮釋資料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">資料庫工具</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">資料模型化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">使用 CodeIgniter 的模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">使用實體類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">資料庫管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">資料庫操控與資料庫建構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">資料庫遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">資料庫填充</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">Validation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">擴充 CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">為 CodeIgniter 貢獻</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../translation/index.html">CodeIgniter4 文件翻譯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../translation/glossary.html">詞彙對照表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../translation/members.html">翻譯貢獻者</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter4</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">一般主題</a> &raquo;</li>
+        
+      <li>程式碼模組</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>程式碼模組<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 支援使用程式碼模組化的方式，幫助你創建具有重用性的程式碼。模組通常是以特定的主題為中心，在你的大型應用程式中它可能是其中的小型應用程式。模組化的撰寫方式在框架中的任何標準檔案類型都有支援，例如：控制器、模型、視圖、設定檔案、輔助函數以及語言檔案等。你可以根據你的需求包含任意數量的模組。</p>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id18">命名空間</a></li>
+<li><a class="reference internal" href="#id4" id="id19">自動探索</a><ul>
+<li><a class="reference internal" href="#id5" id="id20">啟用或關閉探索</a></li>
+<li><a class="reference internal" href="#id6" id="id21">指定被探索的項目</a></li>
+<li><a class="reference internal" href="#composer" id="id22">Composer 與探索</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7" id="id23">與檔案協同工作</a><ul>
+<li><a class="reference internal" href="#id8" id="id24">路由</a></li>
+<li><a class="reference internal" href="#id9" id="id25">控制器</a></li>
+<li><a class="reference internal" href="#id10" id="id26">設定檔案</a></li>
+<li><a class="reference internal" href="#id11" id="id27">遷移</a></li>
+<li><a class="reference internal" href="#id12" id="id28">填充</a></li>
+<li><a class="reference internal" href="#id13" id="id29">輔助函數</a></li>
+<li><a class="reference internal" href="#id14" id="id30">語言檔案</a></li>
+<li><a class="reference internal" href="#id15" id="id31">程式庫</a></li>
+<li><a class="reference internal" href="#id16" id="id32">模型</a></li>
+<li><a class="reference internal" href="#id17" id="id33">視圖</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id18">命名空間</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>模組功能的核心要素來自於 CodeIgniter 使用與 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">PSR4 相容的自動載入</span></a> 。雖然所有程式碼都可以使用 PSR4 的自動載入器和命名空間，但充分利用模組的主要方法，是在  <strong>app/Config/Autoload.php</strong> 的 <code class="docutils literal notranslate"><span class="pre">psr4</span></code> 的部分添加你的程式碼命名空間。</p>
+<p>例如，我們想保留一個簡單的部落格模組，讓我們可以在不同的應用程式間重複使用。你可以創建一個名為公司名稱 Acme 的資料夾，用於儲存我們的模組。我們將這個資料夾放在專案根目錄的 <strong>應用程式</strong> 目錄旁邊：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>        <span class="c1">// New modules directory</span>
+<span class="o">/</span><span class="nx">application</span>
+<span class="o">/</span><span class="k">public</span>
+<span class="o">/</span><span class="nb">system</span>
+<span class="o">/</span><span class="nx">tests</span>
+<span class="o">/</span><span class="nx">writable</span>
+</pre></div>
+</div>
+<p>打開 <strong>app/Config/Autoload.php</strong> 後，將 <strong>Acme</strong> 命名空間加入到 <code class="docutils literal notranslate"><span class="pre">psr4</span></code> 陣列屬性中：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$psr4</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Config&#39;</span>        <span class="o">=&gt;</span> <span class="nx">APPPATH</span> <span class="o">.</span> <span class="s1">&#39;Config&#39;</span><span class="p">,</span>
+    <span class="nx">APP_NAMESPACE</span>   <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>                <span class="c1">// For custom namespace</span>
+    <span class="s1">&#39;App&#39;</span>           <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>                <span class="c1">// To ensure filters, etc still found,</span>
+    <span class="s1">&#39;Acme&#39;</span>          <span class="o">=&gt;</span> <span class="nx">ROOTPATH</span><span class="o">.</span><span class="s1">&#39;acme&#39;</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>現在，我們可以透過 <code class="docutils literal notranslate"><span class="pre">Acme</span></code> 命名空間造訪 <strong>acme</strong> 資料夾。僅僅是這樣我們就能完成模組所需的 80% 工作，你應該要使用自己熟悉的命名空間並且熟練地使用它們。多個檔案類型將透過所有已經定義的命名空間進行自動掃描，這對於模組的工作要素來說是至關重要的。</p>
+<p>一個模組內的通用資料夾結構將會與主應用程式的資料夾結構相同：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>
+    <span class="o">/</span><span class="nx">Blog</span>
+        <span class="o">/</span><span class="nx">Config</span>
+        <span class="o">/</span><span class="nx">Controllers</span>
+        <span class="o">/</span><span class="nx">Database</span>
+            <span class="o">/</span><span class="nx">Migrations</span>
+            <span class="o">/</span><span class="nx">Seeds</span>
+        <span class="o">/</span><span class="nx">Helpers</span>
+        <span class="o">/</span><span class="nx">Language</span>
+            <span class="o">/</span><span class="nx">en</span>
+        <span class="o">/</span><span class="nx">Libraries</span>
+        <span class="o">/</span><span class="nx">Models</span>
+        <span class="o">/</span><span class="nx">Views</span>
+</pre></div>
+</div>
+<p>當然，沒有誰可以強迫你使用這個結構進行開發，你應該以最適合自己的方式來組織你的模組，省去不需要的目錄。或是，替你的實體、介面或是儲存庫創建新的目錄。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id19">自動探索</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>很多時候，你需要替被引入的檔案指定完整的命名空間。但是，你可以透過組態設定將 CodeIgniter 設定成自動探索，讓它找到不同類型的檔案，並將模組集成到你的應用程式中，藉此使集成模組變得更加簡單：</p>
+<ul class="simple">
+<li><a class="reference internal" href="../extending/events.html"><span class="doc">事件</span></a></li>
+<li><a class="reference internal" href="configuration.html"><span class="doc">註冊器</span></a></li>
+<li><a class="reference internal" href="../incoming/routing.html"><span class="doc">路由檔案</span></a></li>
+<li><a class="reference internal" href="../concepts/services.html"><span class="doc">服務（ services ）</span></a></li>
+</ul>
+<p>這是在 <strong>app/Config/Modules.php</strong> 檔案中進行設定的。</p>
+<p>自動探索系統的工作原理是掃描 PSR4 命名空間內的特定目錄與檔案，而這些目錄和檔案已經在 <strong>Config/Autoload.php</strong> 中定義了。</p>
+<p>為了讓自動探索系統在我們的 <strong>Blog</strong> 命名空間中工作，我們需要做一個小調整。 <strong>Acme</strong> 需要改成 <strong>Acme\Blog</strong> 因為命名公籤中的每個「模組」都需要完全定義，探索的過程將在這個路徑上尋找可以被探索的項目，例如在： <strong>/acme/Blog/Config/Routes.php</strong> 中找到路由文件。</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id20">啟用或關閉探索</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>你可以使用 <strong>$enabled</strong> 這個類別變數開啟或關閉系統中所有自動探索的功能。 False 將禁用所有探索，優化效能，但模組的特殊功能將被否決。</p>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id21">指定被探索的項目</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>使用 <strong>$activeExplorers</strong>  選項，你可以指定哪些項目在自動探索的範圍。如果這個項目不存在，那麼這個項目將不會被自動探索，但是陣列中的其他項目仍在探索範圍。</p>
+</div>
+<div class="section" id="composer">
+<h3><a class="toc-backref" href="#id22">Composer 與探索</a><a class="headerlink" href="#composer" title="本標題的永久連結">¶</a></h3>
+<p>透過 Composer 安裝的軟體包也在默認探索的範圍之中，這是因為 Composer 的命名空間是採用 PSR4 規範的。 PSR0 的命名空間就不會被自動探索功能檢測到。</p>
+<p>如果你不希望在定位檔案時掃描所有 Composer 的以知目錄，你可以透過編輯 <code class="docutils literal notranslate"><span class="pre">Config\Modules.php</span></code> 檔案，修改裡頭的 <code class="docutils literal notranslate"><span class="pre">$discoverInComposer</span></code> 變數來關閉這個功能：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$discoverInComposer</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id23">與檔案協同工作</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>這個條目將針對每種檔案類型（控制器、視圖、語言檔案等）說明它們應該如何在模組中使用。其中的一些訊息在這份使用文件的相關位置有更詳細的描述，但我們將會在此簡述，以便你更容易地掌握所有部件事如何整合在一起的。</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id24">路由</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>在預設的情形下 <a class="reference internal" href="../incoming/routing.html"><span class="doc">路由</span></a> 會在模組內被自動掃描。他可以在 <strong>Modules</strong> （模組）的設定檔案中關閉。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">因為這個檔案被包含在當前的作用域中，所以 <code class="docutils literal notranslate"><span class="pre">$routes</span></code> 實體已經替你自動宣告好了。如果你試圖重新定義這個類別，它將會導致錯誤發生。</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id25">控制器</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
+<p>我們不能透過 URI 檢測自動路由到 <strong>app/Controllers</strong> 目錄以外的控制器，所以你必須在路由檔案中進行指定：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Routes.php</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;Acme\Blog\Controllers\Blog::index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>為了減少這裡需要輸入的數量，<strong>group</strong> 這個路由的特色功能可以輔助你：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Acme\Blog\Controllers&#39;</span><span class="p">],</span> <span class="k">function</span><span class="p">(</span><span class="nv">$routes</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog::index&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id26">設定檔案</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<p>在處理組態設定檔案時，不需要特別改變它們，這些檔案仍然是命名空間類別，並使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 保留字進行載入：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Config\Blog</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>每當使用了 <strong>config()</strong> 函數時，將會自動探索相關的設定檔案。</p>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id27">遷移</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<p>在已定義的命名空間內將會自動探索遷移的檔案。它會在每次運作時在所有的命名空間中找到所有的遷移。</p>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id28">填充</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<p>只要提供了完整的命名空間，填充的檔案可以透過 CLI 使用，也可以從其他的填充檔案呼叫，若是你希望在 CLI 中呼叫填充檔案，則需要鍵入雙反斜線：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="k">public</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="nx">Acme\\Blog\\Database\\Seeds\\TestPostSeeder</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id29">輔助函數</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<p>當使用 <code class="docutils literal notranslate"><span class="pre">helper()</span></code> 方法時，只要是在命名空間 <strong>Helpers</strong> 目錄下的輔助函數，就會從已經定義的命名空間中被自動定位：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id30">語言檔案</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<p>當使用了 <code class="docutils literal notranslate"><span class="pre">lang()</span></code> 方法時，只要檔案遵照與主應用程式相同的目錄結構，語言檔案就會從已定義的命名空間中自動定位。</p>
+</div>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id31">程式庫</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
+<p>你得透過完全符合的類別名稱來實體化你的程式庫，所以我們不提供特殊的方式讓你造訪程式庫：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$lib</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Libraries\BlogLib</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id32">模型</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
+<p>你得透過完全符合的類別名稱來實體化你的模型，所以我們不提供特殊的方式讓你造訪模型：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Models\PostModel</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id33">視圖</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<p>視圖可以按照 <a class="reference internal" href="../outgoing/views.html"><span class="doc">視圖</span></a> 使用說明中的描述，使用類別命名空間來進行載入：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;Acme\Blog\Views\index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="managing_apps.html" class="btn btn-neutral float-right" title="管理你的應用程式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ajax.html" class="btn btn-neutral float-left" title="AJAX 請求" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+      <span class="lastupdated">
+        最後更新於 2020年04月30日。
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

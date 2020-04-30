@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>命令列程式庫 &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="CLI 請求類別" href="cli_request.html" />
+    <link rel="prev" title="自訂命令列介面指令" href="cli_commands.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DD4814" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ci-logo-text.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">系統需求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">貢獻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 規範</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">建構第一個應用程式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">靜態頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">新聞頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">建立新聞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">結論</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">一般主題</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">組態設定檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">全域函數與常數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">記錄日誌資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">錯誤處理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">網頁快取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">程式碼模組</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">處理多種環境</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">資料庫操作</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">連接你的資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">詮釋資料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">資料庫工具</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">資料模型化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">使用 CodeIgniter 的模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">使用實體類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">資料庫管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">資料庫操控與資料庫建構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">資料庫遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">資料庫填充</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">Validation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">使用命令列介面</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">命令列程式庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_request.html">CLI 請求類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">擴充 CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">為 CodeIgniter 貢獻</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../translation/index.html">CodeIgniter4 文件翻譯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../translation/glossary.html">詞彙對照表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../translation/members.html">翻譯貢獻者</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter4</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">使用命令列介面</a> &raquo;</li>
+        
+      <li>命令列程式庫</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>命令列程式庫<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 的命令列程式庫使創建交互式命令列腳本變得簡單，它包括：</p>
+<ul class="simple">
+<li>提示使用者更多資訊</li>
+<li>使你撰寫的文字在終端機中色彩斑斕</li>
+<li>Beeping (be nice!)</li>
+<li>在長時間的任務中顯示進度條</li>
+<li>自動替長文字換行，以符合視窗大小</li>
+</ul>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id6">初始化類別</a></li>
+<li><a class="reference internal" href="#id4" id="id7">取得使用者輸入</a></li>
+<li><a class="reference internal" href="#id5" id="id8">提供回饋</a></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id6">初始化類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>你不宣要建立一個命令列程式庫的實體，因為它所有的方法都是靜態的，你只需要在你的控制器上方使用 <code class="docutils literal notranslate"><span class="pre">use</span></code> 語句來引入它即可。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\CLI\CLI</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyController</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Controller</span>
+<span class="p">{</span>
+        <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>當你第一次載入檔案時，類別會自動初始化。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id7">取得使用者輸入</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>有時，你會需要向使用者詢問更多的訊息，原因可能是，他們沒有提供指令需要的必要參數，或者是腳本在寫入檔案前發現檔案已存在，需要在覆寫前確認——這些需求都可以使用 <code class="docutils literal notranslate"><span class="pre">prompt()</span></code> 方法來處理。</p>
+<p>你可以透過傳入問題字串作為第一個參數：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$color</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your favorite color?&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你可以提供一個預設的答案，如果使用者在傳遞第二個參數的過程中採用預設值來輸入，那麼將使用你所提供的答案：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$color</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your favorite color?&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你可以透過在第二個參數中傳入一個允許的答案陣列來限制你可以接受的回答：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$overwrite</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;File exists. Overwrite?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>最後，你可以將你的驗證規則作為第三個參數傳入：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your email?&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;required|valid_email&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id8">提供回饋</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p><strong>write()</strong></p>
+<p>我們為你提供了幾種方法來向使用者輸出回饋訊息，這可以是簡單的單一狀態更新，也可以是一個複雜的訊息表格，這些需求都可以完整的輸出到使用者的終端機視窗。其中，最核心的方法就屬 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 方法了，它把需要輸出的字串作為第一個被傳入的參數：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;The rain in Spain falls mainly on the plains.&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你可以透過傳入一個顏色的名稱來做為第二個參數，這可以改變文字的顏色：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;File created.&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>這可以用來區分訊息的狀態，或者用不同的顏色來創建頁眉，你甚至可以透過在第三個參數中傳入顏色的名稱來設定背景顏色：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;File overwritten.&#39;</span><span class="p">,</span> <span class="s1">&#39;light_red&#39;</span><span class="p">,</span> <span class="s1">&#39;dark_gray&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>以下為可以使用的顏色：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">black</span>
+<span class="nx">dark_gray</span>
+<span class="nx">blue</span>
+<span class="nx">dark_blue</span>
+<span class="nx">light_blue</span>
+<span class="nx">green</span>
+<span class="nx">light_green</span>
+<span class="nx">cyan</span>
+<span class="nx">light_cyan</span>
+<span class="nx">red</span>
+<span class="nx">light_red</span>
+<span class="nx">purple</span>
+<span class="nx">light_purple</span>
+<span class="nx">light_yellow</span>
+<span class="nx">yellow</span>
+<span class="nx">light_gray</span>
+<span class="nx">white</span>
+</pre></div>
+</div>
+<p>以下為可以使用的背景顏色：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">black</span>
+<span class="nx">blue</span>
+<span class="nx">green</span>
+<span class="nx">cyan</span>
+<span class="nx">red</span>
+<span class="nx">yellow</span>
+<span class="nx">light_gray</span>
+<span class="nx">magenta</span>
+</pre></div>
+</div>
+<p><strong>print()</strong></p>
+<p>print()　函數與　<code class="docutils literal notranslate"><span class="pre">write()</span></code>　函數相同，使是它不強制在前後加上換行。相反的，它會將內容輸出到螢幕上游標的位置。這使得你可以在同一行中輸出多個項目，並從不同的呼叫中持續輸出。當你想顯示一些狀態、做一些事情，然後在同一列中輸出 「Done」 時，這個方法特別有用：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">CLI</span><span class="o">::</span><span class="na">print</span><span class="p">(</span><span class="nv">$i</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>color()</strong></p>
+<p>雖然 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 指令會把一行字輸出到終端機上，並以 EOL 符號結束，但你也可以用 <code class="docutils literal notranslate"><span class="pre">color()</span></code> 方法製作一個字串片段，這時就不會強制執行 EOL 。這樣你就可以在同一列上創建多個輸出。或者，你可以在 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 內部使用 <code class="docutils literal notranslate"><span class="pre">color()</span></code> 方法，就能輸出一個不同顏色的字串了：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;fileA </span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">.</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">color</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">),</span> <span class="s1">&#39;yellow&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>這個例子會在視窗寫入一行文字， <code class="docutils literal notranslate"><span class="pre">fileA</span></code> 是黃色的，然後 <code class="docutils literal notranslate"><span class="pre">/path/to/file</span></code> 是白色的。</p>
+<p><strong>error()</strong></p>
+<p>如果你需要輸出錯誤，你應該使用有著錯誤語意的 <code class="docutils literal notranslate"><span class="pre">error()</span></code> 方法。這個方法會與 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">color()</span></code> 一樣，將淺紅色的文字寫到 STDERR 而不是 STDOUT 。如果你的腳本正在監視錯誤，那麼這個方法將會十分有用，因為這樣他們就不用去篩選所有的訊息，只需要篩選實際的錯誤訊息。你可以像使用 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 方法一樣使用它：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">error</span><span class="p">(</span><span class="s1">&#39;Cannot write to file: &#39;</span> <span class="o">.</span> <span class="nv">$file</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>wrap()</strong></p>
+<p>這個指令將會把字串在當前的行上輸出，然後將其換行到新的行上設定長度。當顯示一個帶有著描述選項的列表時，這個功能會很有用，因為你一定會想讓訊息乖乖地待在視窗中，而不是超出螢幕大小：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">color</span><span class="p">(</span><span class="s2">&quot;task1</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">);</span>
+<span class="nx">CLI</span><span class="o">::</span><span class="na">wrap</span><span class="p">(</span><span class="s2">&quot;Some long description goes here that might be longer than the current window.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>在預設的情形下，字串將在終端機的實際寬度下換行。 Windows 目前並沒有提供確定視窗大小的方法，所以我們將預設為單行 80 個字元。如果要將寬度限制為較短的寬度，以便確定符合視窗的話，則可以將最大長度作為第二個參數傳入方法。這將在最接近長度邊緣的單字進行換行，避免單字被切一半這件事發生：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 限制單行文字為最大 20 字寬</span>
+<span class="nx">CLI</span><span class="o">::</span><span class="na">wrap</span><span class="p">(</span><span class="nv">$description</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你可能會有標題、檔案名稱、工作名稱記錄在左側，並且右側有包含其說明文字的需求。在預設的情形下，右方文字的換行將會回到視窗的左側，將沒辦法允許你這麼排版。在這種情況下，你可以傳入多個空格，在第一行之後填充每一行，這樣你就能在左方獲得清晰的邊緣列：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 決定所有標題長度</span>
+<span class="c1">// 以確定左欄的寬度</span>
+<span class="nv">$maxlen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">array_map</span><span class="p">(</span><span class="s1">&#39;strlen&#39;</span><span class="p">,</span> <span class="nv">$titles</span><span class="p">));</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$titles</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span>
+                <span class="c1">// Display the title on the left of the row</span>
+                <span class="nv">$title</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;   &#39;</span> <span class="o">.</span>
+                <span class="c1">// Wrap the descriptions in a right-hand column</span>
+                <span class="c1">// with its left side 3 characters wider than</span>
+                <span class="c1">// the longest item on the left.</span>
+                <span class="nx">CLI</span><span class="o">::</span><span class="na">wrap</span><span class="p">(</span><span class="nv">$descriptions</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span> <span class="mi">40</span><span class="p">,</span> <span class="nv">$maxlen</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>會建立起下列內容：</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>task1a     Lorem Ipsum is simply dummy
+           text of the printing and typesetting
+           industry.
+task1abc   Lorem Ipsum has been the industry&#39;s
+           standard dummy text ever since the
+</pre></div>
+</div>
+<p><strong>newLine()</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">newLine()</span></code> 方法將向使用者輸出空行，它並不接受任何參數的傳入：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">newLine</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>clearScreen()</strong></p>
+<p>你可以使用 <code class="docutils literal notranslate"><span class="pre">clearScreen()</span></code> 方法清除目前視窗內的內容，在大多數版本的 Windows 內，這將簡單地插入 40 行的空行，因為 Windows 不支援這個功能。但 Windows10 的 bash 集成將可以改變這一點：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">clearScreen</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>showProgress()</strong></p>
+<p>如果你有一個長期運作的任務，你想讓使用者了解最新的進度，你可以使用 <code class="docutils literal notranslate"><span class="pre">showProgress()</span></code> 方法來表示進度，這個方法顯示的內容如下：</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[####......] 40% Complete
+</pre></div>
+</div>
+<p>這個進度方塊的動畫效果非常好。</p>
+<p>要使用它的話，請在第一個參數中輸入目前的步驟，並將總步驟數當成第二個參數傳入。完成的百分比以及顯示的長度將根據這兩個數字決定。完成後，傳入 false 進度條就會被刪除。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$totalSteps</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$tasks</span><span class="p">);</span>
+<span class="nv">$currStep</span>   <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$tasks</span> <span class="k">as</span> <span class="nv">$task</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="nx">CLI</span><span class="o">::</span><span class="na">showProgress</span><span class="p">(</span><span class="nv">$currStep</span><span class="o">++</span><span class="p">,</span> <span class="nv">$totalSteps</span><span class="p">);</span>
+        <span class="nv">$task</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Done, so erase it...</span>
+<span class="nx">CLI</span><span class="o">::</span><span class="na">showProgress</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>table()</strong></p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$thead</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span> <span class="s1">&#39;Updated At&#39;</span><span class="p">,</span> <span class="s1">&#39;Active&#39;</span><span class="p">];</span>
+<span class="nv">$tbody</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;A great item title&#39;</span><span class="p">,</span> <span class="s1">&#39;2017-11-15 10:35:02&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;Another great item title&#39;</span><span class="p">,</span> <span class="s1">&#39;2017-11-16 13:46:54&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nx">CLI</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="nv">$tbody</span><span class="p">,</span> <span class="nv">$thead</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+----+--------------------------+---------------------+--------+
+| ID | Title                    | Updated At          | Active |
++----+--------------------------+---------------------+--------+
+| 7  | A great item title       | 2017-11-16 10:35:02 | 1      |
+| 8  | Another great item title | 2017-11-16 13:46:54 | 0      |
++----+--------------------------+---------------------+--------+
+</pre></div>
+</div>
+<p><strong>wait()</strong></p>
+<p>等待一定的秒數，可以選擇等待訊息以及等待按鍵。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 將會等待你所指定的時間，並顯示倒數計時</span>
+<span class="nx">CLI</span><span class="o">::</span><span class="na">wait</span><span class="p">(</span><span class="nv">$seconds</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="c1">// 繼續顯示訊息，等待輸入</span>
+<span class="nx">CLI</span><span class="o">::</span><span class="na">wait</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+
+<span class="c1">// 等待你所指定的時間</span>
+<span class="nx">CLI</span><span class="o">::</span><span class="na">wait</span><span class="p">(</span><span class="nv">$seconds</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cli_request.html" class="btn btn-neutral float-right" title="CLI 請求類別" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cli_commands.html" class="btn btn-neutral float-left" title="自訂命令列介面指令" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+      <span class="lastupdated">
+        最後更新於 2020年04月30日。
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

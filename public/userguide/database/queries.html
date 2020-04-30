@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>執行查詢 &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="產生查詢結果" href="results.html" />
+    <link rel="prev" title="連接你的資料庫" href="connecting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DD4814" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ci-logo-text.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">系統需求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">貢獻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 規範</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">建構第一個應用程式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">靜態頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">新聞頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">建立新聞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">結論</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">一般主題</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">組態設定檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">全域函數與常數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">記錄日誌資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">錯誤處理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">網頁快取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">程式碼模組</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">處理多種環境</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接你的資料庫</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">資料模型化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">使用 CodeIgniter 的模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">使用實體類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">資料庫管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">資料庫操控與資料庫建構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">資料庫遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">資料庫填充</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">Validation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">擴充 CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">為 CodeIgniter 貢獻</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../translation/index.html">CodeIgniter4 文件翻譯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../translation/glossary.html">詞彙對照表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../translation/members.html">翻譯貢獻者</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter4</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">資料庫操作</a> &raquo;</li>
+        
+      <li>執行查詢</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>執行查詢<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id18">查詢基礎</a><ul>
+<li><a class="reference internal" href="#id4" id="id19">常規的查詢</a></li>
+<li><a class="reference internal" href="#id5" id="id20">簡單化的查詢</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id21">手動設定資料庫字首</a></li>
+<li><a class="reference internal" href="#id7" id="id22">保護標識符號</a></li>
+<li><a class="reference internal" href="#id8" id="id23">跳脫查詢</a></li>
+<li><a class="reference internal" href="#id9" id="id24">封裝查詢</a><ul>
+<li><a class="reference internal" href="#id10" id="id25">封裝命名</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11" id="id26">錯誤處理</a></li>
+<li><a class="reference internal" href="#id12" id="id27">預備查詢</a><ul>
+<li><a class="reference internal" href="#id13" id="id28">預備查詢</a></li>
+<li><a class="reference internal" href="#id14" id="id29">執行查詢</a></li>
+<li><a class="reference internal" href="#id15" id="id30">其他方法</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16" id="id31">操作查詢物件</a><ul>
+<li><a class="reference internal" href="#id17" id="id32">查詢類別</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id18">查詢基礎</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id19">常規的查詢</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>可以使用 <strong>query</strong> 來提交查詢：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>當對資料庫進行 「讀取」 查詢時，query() 函數會以 <em>物件(object)</em> 型態回傳資料庫產生的 <a class="reference internal" href="results.html"><span class="doc">查詢結果</span></a>。當對資料庫進行 「寫入」 查詢時，會依據執行的成功或失敗來回傳TRUE 或 FALSE。
+當對資料庫進行 「檢索」 查詢時，通常使用一個變數來接收查詢的結果，例如：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id20">簡單化的查詢</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p><strong>simpleQuery</strong> 方法是 $db-&gt;query() 的簡化版。它不會回傳資料庫結果集合，不會設定查詢計時器，不會編譯資料，不會儲存你的查詢以便除錯。它只是讓你提交查詢。大多數使用者很少會使用到這個函數。</p>
+<p>它回傳資料庫驅動的 「execute」 函數的回傳的結果。通常在執行類型查詢，如： INSERT 、 DELETE ，或 UPDATE 語法（合適的應用時機），會根據成功或失敗，回傳TRUE/FALSE。對於可獲得結果的查詢，則會回傳一個資源／物件。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">simpleQuery</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&quot;Success!&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&quot;Query failed!&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">在 PostgreSQL 中，例如： <code class="docutils literal notranslate"><span class="pre">pg_exec()</span></code> 函數在執行查詢成功後，都只會回傳資源，即使是執行類型查詢也是一樣。所以如果你是要找布林值的話，請注意這一點。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id21">手動設定資料庫字首</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>如果你有設定資料庫字首，並且想要它加入在資料表名稱前，例如當你使用原生SQL，則你可以使用以下的語法：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prefixTable</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">);</span> <span class="c1">// outputs prefix_tablename</span>
+</pre></div>
+</div>
+<p>如果你因為某些原因需要修改字首，並不需要建立一個新的連線，可以使用以下方法：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">setPrefix</span><span class="p">(</span><span class="s1">&#39;newprefix&#39;</span><span class="p">);</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prefixTable</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">);</span> <span class="c1">// outputs newprefix_tablename</span>
+</pre></div>
+</div>
+<p>你可以利用以下方式，隨時取得目前字首：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$DBPrefix</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">getPrefix</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id22">保護標識符號</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>在許多資料庫中，保護資料表和欄位名稱是重要的。例如：在 MySQL 中使用反引號（backticks）。但是 <strong>查詢生成器會自動保護</strong> ，如果你需要手動保護這些標示符號，可以使用以下的方法：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">protectIdentifiers</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">儘管查詢生成器會盡力地正確使用你所提供的任何欄位和資料表名稱。請注意，它的設計並不是讓使用者任意的輸入。所以請不要輸入未經消毒的資料。</p>
+</div>
+<p>假如你的資料庫設定檔中有指定字首，這個函數會在你的資料表前加上字首。你可以設定第二個參數為 TRUE (boolean) 來啟動字首設定：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">protectIdentifiers</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id23">跳脫查詢</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<p>在提交資料到資料庫前，先進行資料跳脫，這是一個非常良好的安全習慣。 CodeIgniter 有三種方法可以幫助你做到這一點：</p>
+<ol class="arabic">
+<li><p class="first"><strong>$db-&gt;escape()</strong> 這個函數根據資料型態來運作，所以它只會對字串型態的資料進行跳脫。它也會自動增加單引號在字串的兩側，所以你不必加上單引號：</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table (title) VALUES(&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>$db-&gt;escapeString()</strong> 這個函數可以跳脫任何資料型態。在大多數的情況下，你會看到以上的方式，而不是以下的。要使用這樣的功能可以參考以下：</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table (title) VALUES(&#39;&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escapeString</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;&#39;)&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>$db-&gt;escapeLikeString()</strong> 這個函數被用來使用在 SQL LIKE 的語法當中，像是萬用字元（ % ，_ ）在此函數中也會被跳脫。</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$search</span> <span class="o">=</span> <span class="s1">&#39;20% raise&#39;</span><span class="p">;</span>
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id FROM table WHERE column LIKE &#39;%&quot;</span> <span class="o">.</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escapeLikeString</span><span class="p">(</span><span class="nv">$search</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;%&#39; ESCAPE &#39;!&#39;&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">escapeLikeString()</span></code> 方法使用 「!」 （驚嘆號） 來跳脫 <em>LIKE</em> 條件的特殊字元。因為這個方法可以跳脫部分的字串，你可以自己用引號進行封裝，所以這個方法無法替你自動加入 <code class="docutils literal notranslate"><span class="pre">ESCAPE</span> <span class="pre">'!'</span></code> 的條件，你需要手動加入。</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id24">封裝查詢</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<p>封裝可以簡化你的查詢語法，讓系統為你的查詢放入資料。請參考以下範例：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?&quot;</span><span class="p">;</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span> <span class="s1">&#39;Rick&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>這些問號會自動取代成查詢函數中的第二個參數的陣列參數值。</p>
+<p>封裝也支援陣列參數，它將轉換成 IN 使用的集合：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM some_table WHERE id IN ? AND status = ? AND author = ?&quot;</span><span class="p">;</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span> <span class="s1">&#39;Rick&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>封裝轉換後的查詢結果如下</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">some_table</span> <span class="nx">WHERE</span> <span class="nx">id</span> <span class="nx">IN</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="k">AND</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;live&#39;</span> <span class="k">AND</span> <span class="nx">author</span> <span class="o">=</span> <span class="s1">&#39;Rick&#39;</span>
+</pre></div>
+</div>
+<p>使用封裝的第二個好處是，這些值會自動跳脫，以產生更安全的查詢。你就不需要手動跳脫資料，系統會自動幫你處理。</p>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id25">封裝命名</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<p>不使用問號來標記封裝值的位置，你可以使用封裝命名，讓 key 和 value 可以相互對應。並且讓傳遞進來的鍵值陣列的鍵名與查詢中的置換符號相符：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM some_table WHERE id = :id: AND status = :status: AND author = :name:&quot;</span><span class="p">;</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>     <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Rick&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">每個要封裝的值必須用冒號（:）包起來。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id26">錯誤處理</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h2>
+<p><strong>$db-&gt;error();</strong></p>
+<p>如果你需要取得上次查詢後的錯誤訊息，error() 這個方法會回傳一個包含錯誤編號和訊息的陣列，以下是一個簡單的範例：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">simpleQuery</span><span class="p">(</span><span class="s1">&#39;SELECT `example_field` FROM `example_table`&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+        <span class="nv">$error</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">();</span> <span class="c1">// Has keys &#39;code&#39; and &#39;message&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id27">預備查詢</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h2>
+<p>大多數的資料庫引擎，支援某些形式的預備語法，這些語法讓你可以準備一次查詢，然後使用新的資料集進行多次查詢。由於資料是用與查詢本身不同的格式傳送到資料庫，因此消除了SQL注入的可能性。當你需要執行多次相同的查詢，速度也會快很多。然而，對每次的查詢都使用它，會對性能產生重大的影響，因為你要加倍頻繁的呼叫資料庫。由於查詢生成器和資料庫連接已經為你處理了跳脫資料，因此安全方面就不需要特別的擔心。但是，有時候你需要藉由執行預備語法或預備查詢來最佳化查詢。</p>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id28">預備查詢</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<p>透過 <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> 方法可以簡單地完成預備。這需要一個會回傳查詢物件的匿名函數作為參數。查詢物件是由任何 「final」 類型查詢自動產生的，包含新增、更新、刪除、取代、取得。使用查詢生成器執行查詢，是最簡單的方式。實際上，該查詢並未執行，而且變數無關緊要，因為它們從未被應用，而是置換符號。這會回傳一個 PreparedQuery 的物件。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
+               <span class="o">-&gt;</span><span class="na">insert</span><span class="p">([</span>
+                    <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;email&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;country&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;US&#39;</span>
+               <span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>如果你不想使用查詢生成器，則可以使用問號為置換符號的值，手動建立一個查詢物件。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Database\Query</span><span class="p">;</span>
+
+<span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO user (name, email, country) VALUES (?, ?, ?)&quot;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Query</span><span class="p">(</span><span class="nv">$db</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">setQuery</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>在預備語法中，如果你需要傳送一個變數陣列來操作資料庫，你可以在第二個參數傳送這個陣列：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Database\Query</span><span class="p">;</span>
+
+<span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO user (name, email, country) VALUES (?, ?, ?)&quot;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Query</span><span class="p">(</span><span class="nv">$db</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">setQuery</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+<span class="p">},</span> <span class="nv">$options</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id29">執行查詢</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<p>當你的預備查詢已經準備好了，你可以使用 <code class="docutils literal notranslate"><span class="pre">execute()</span></code> 方法去執行你的查詢。在語法中，你可以根據你的需求傳送任意多的變數，但是變數的數量比須符合置換符號的數量，且順序也必須與原查詢中一樣。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Prepare the Query</span>
+<span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
+               <span class="o">-&gt;</span><span class="na">insert</span><span class="p">([</span>
+                    <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;email&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;country&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;US&#39;</span>
+               <span class="p">]);</span>
+<span class="p">});</span>
+
+<span class="c1">// Collect the Data</span>
+<span class="nv">$name</span>    <span class="o">=</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">;</span>
+<span class="nv">$email</span>   <span class="o">=</span> <span class="s1">&#39;j.doe@example.com&#39;</span><span class="p">;</span>
+<span class="nv">$country</span> <span class="o">=</span> <span class="s1">&#39;US&#39;</span><span class="p">;</span>
+
+<span class="c1">// Run the Query</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$pQuery</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$email</span><span class="p">,</span> <span class="nv">$country</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>這裡將會回傳一個標準的 <a class="reference internal" href="results.html"><span class="doc">結果集合</span></a> 。</p>
+</div>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id30">其他方法</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
+<p>除了以上的兩個主要的方法之外，預備查詢物件也有以下幾個方法：</p>
+<p><strong>close()</strong> 儘管PHP在關閉資料庫語法已經做得很好，但是在操作完資料庫後關閉預備語法也是一項重要的工作。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$pQuery</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>getQueryString()</strong></p>
+<p>這將會回傳一個字串型態的預備語法。</p>
+<p><strong>hasError()</strong></p>
+<p>在最後一次 execute() 後如果出現任何錯誤，將會回傳布林型態的 true/false 。</p>
+<p><strong>getErrorCode()</strong>
+<strong>getErrorMessage()</strong></p>
+<p>如果出現任何錯誤，可以使用這兩個方法來檢視錯誤編碼和錯誤訊息。</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h2><a class="toc-backref" href="#id31">操作查詢物件</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h2>
+<p>在CodeIgniter的內部架構中，所有查詢都會當作為 CodeIgniterDatabaseQuery 的實體進行處理和儲存。這些類別負責繫結變數，否則準備好查詢，並且儲存查詢相關的性能資訊。</p>
+<p><strong>getLastQuery()</strong></p>
+<p>當你需要檢索上次查詢的語法，使用 getLastQuery() 這個方法：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">getLastQuery</span><span class="p">();</span>
+<span class="k">echo</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$query</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id32">查詢類別</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<p>每個查詢物件會儲存查詢相關的一些資訊。在一定程度上這些方法被時間軸功能使用，但你也可以使用。</p>
+<p><strong>getQuery()</strong></p>
+<p>在完成所有處理後，回傳最後的查詢。這裡的查詢是確切發送資料庫的查詢。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>將查詢物件轉換成陣列做相同的查詢。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$query</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>getOriginalQuery()</strong></p>
+<p>回傳原本的SQL。這不會有任何繫結值或更換字首等等。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getOriginalQuery</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>hasError()</strong></p>
+<p>如果在執行查詢時有發生錯誤，這個方法將將會回傳 true 。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">hasError</span><span class="p">())</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;Code: &#39;</span><span class="o">.</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getErrorCode</span><span class="p">();</span>
+        <span class="k">echo</span> <span class="s1">&#39;Error: &#39;</span><span class="o">.</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getErrorMessage</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>isWriteType()</strong></p>
+<p>如果查詢被確認為寫入的類別查詢（例如：新增、更新、刪除等等），回傳true。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">isWriteType</span><span class="p">())</span>
+<span class="p">{</span>
+        <span class="o">...</span> <span class="k">do</span> <span class="nx">something</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>swapPrefix()</strong></p>
+<p>在最後的SQL中，用一個值替換掉一個資料表的字首。第一個參數為原本的字首，第二個參數為你想要替換的值。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">swapPrefix</span><span class="p">(</span><span class="s1">&#39;ci3_&#39;</span><span class="p">,</span> <span class="s1">&#39;ci4_&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>getStartTime()</strong></p>
+<p>回傳查詢執行的時間，以微秒（ms）為單位。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$microtime</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getStartTime</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>getDuration()</strong></p>
+<p>回傳查詢持續時間的浮點數，以微秒（ms）為單位。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$microtime</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getDuration</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="results.html" class="btn btn-neutral float-right" title="產生查詢結果" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="connecting.html" class="btn btn-neutral float-left" title="連接你的資料庫" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+      <span class="lastupdated">
+        最後更新於 2020年04月30日。
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
