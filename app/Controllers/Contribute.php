@@ -22,8 +22,7 @@ class Contribute extends BaseController
 	public function index()
 	{
 	    $this->data = $this->gitter->fillHeroes($this->data);
-		$this->data['title'] = '貢獻 CodeIgniter';
-
+		$this->data['title'] = "貢獻 CodeIgniter";
 		$this->render('contribute');
 	}
 

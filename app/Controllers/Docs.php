@@ -17,8 +17,7 @@ class Docs extends BaseController
 	public function index()
 	{
         $this->data = $this->gitter->fillReleaseInfo($this->data);
-		$this->data['title'] = 'CodeIgniter 使用手冊';
-
+		$this->data['title'] = "CodeIgniter 使用手冊";
 		$this->render('docs');
 	}
 

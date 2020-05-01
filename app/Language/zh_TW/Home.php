@@ -4,7 +4,7 @@
  * The text blocks use markdown format.
  */
 return [
-	'pageTitle'		 => 'CodeIgniter 台灣 輕量級 PHP 網頁框架',
+	'pageTitle'		 => 'CodeIgniter台灣 輕量級 PHP 網頁框架',
 	'jumboTitle'	 => 'CodeIgniter 搖滾！',
 	'jumboMessage'	 => 'CodeIgniter 是一個輕量且功能強大的 PHP Web 框架，它內建簡單優雅的程式庫，可以幫助應用程式開發人員建立完整功能的 Web 應用程式！',
 	'block1Title'	 => '下載',

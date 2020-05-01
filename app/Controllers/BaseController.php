@@ -73,7 +73,8 @@ class BaseController extends Controller
 
 		if ( ! isset($data['pagetitle']))
         {
-            $data['pagetitle'] = $data['title'];
+            $data['pagetitle'] = $data['title']." | ".lang('Home.pageTitle');
+			;
         }
 
         $this->response->noCache();

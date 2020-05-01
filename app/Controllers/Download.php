@@ -16,8 +16,7 @@ class Download extends BaseController
 	public function index()
 	{
         $this->data = $this->gitter->fillReleaseInfo($this->data);
-	    $this->data['title'] = '下載 CodeIgniter';
-
+	    $this->data['title'] = "下載 CodeIgniter";
 		$this->render('download');
 	}
 

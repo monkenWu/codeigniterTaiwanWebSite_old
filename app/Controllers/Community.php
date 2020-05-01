@@ -15,8 +15,7 @@ class Community extends BaseController {
      */
 	public function index()
 	{
-		$this->data['title'] = 'CodeIgniter 社群';
-
+		$this->data['title'] = "CodeIgniter 社群";
 		$this->render('community');
 	}
 
