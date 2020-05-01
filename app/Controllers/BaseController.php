@@ -63,10 +63,12 @@ class BaseController extends Controller
      */
 	protected function render(string $view)
 	{
-        // URL without the locale
-        $this->realUrl = trim('/' . $this->request->uri->getSegment(2) . '/' . $this->request->uri->getSegment(3), '/ ');
-        if (empty($this->realUrl))
+		// URL without the locale
+		try {
+			$this->realUrl = trim('/' . $this->request->uri->getSegment(2) . '/' . $this->request->uri->getSegment(3), '/ ');
+		} catch (\Throwable $th) {
             $this->realUrl = 'home';
+		}
 
         $this->buildNavbars();
 	    $data = $this->data;
