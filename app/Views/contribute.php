@@ -145,7 +145,7 @@
                                 如果你想參與 CodeIgniter 下一個版本的開發，請在
                                 <a href="https://github.com/codeigniter4/CodeIgniter4">Github</a>
                                 中加入我們，在使用手冊裡有有詳細的
-                                <a href="/userguide/extending/contributing.html">貢獻方法</a>，
+                                <a href="/user_guide/extending/contributing.html">貢獻方法</a>，
                                 以及
                                 <a href="https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.rst">程式碼撰寫風格</a>。
                             </p>

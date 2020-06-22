@@ -21,7 +21,7 @@
                     <p> 
                         你可以使用下方的按鈕下載 V4 框架，但我們建議你先看看使用手冊中的
                         
-                        <a target="_blank" href="/userguide/installation/index.html">安裝指引</a>
+                        <a target="_blank" href="/user_guide/installation/index.html">安裝指引</a>
 
                         ，從多種安裝方式中選擇最適合你的：） 
                     </p>

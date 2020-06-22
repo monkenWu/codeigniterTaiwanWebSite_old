@@ -25,13 +25,13 @@
                     </p>
                     <ul class="nav nav-pills justify-content-center">
                         <li class="nav-item" style="margin:0.5em;">
-                            <a href="/userguide/index.html"
+                            <a href="/user_guide/index.html"
                                class="nav-link btn-success" title="Read it online">
                                 <i class="glyphicon glyphicon-book"></i> 線上使用手冊
                             </a>
                         </li>
                         <li class="nav-item" style="margin:0.5em;">
-                            <a href="https://github.com/monkenWu/codeIgniter4-taiwan-User-Guide/archive/v4.0.2.T1.zip" class="nav-link btn-primary" title="Download the User Guide">
+                            <a href="https://github.com/monkenWu/codeIgniter4-taiwan-User-Guide/archive/v4.0.3.T2.zip" class="nav-link btn-primary" title="Download the User Guide">
                                 <i class="glyphicon glyphicon-save"></i> 離線使用手冊
                             </a>
                         </li>

@@ -31,7 +31,7 @@ class Home extends BaseController
 				'label'	 => lang('Home.block1Title'),
 				'text'	 => lang('Home.block1Desc') . $this->data['v4name'] ?? ''],
 			['icon'	 => 'book',
-				'link'	 => '/userguide/index.html',
+				'link'	 => '/user_guide/index.html',
 				'label'	 => lang('Home.block2Title'),
 				'text'	 => lang('Home.block2Desc')],
 			['icon'	 => 'user',
