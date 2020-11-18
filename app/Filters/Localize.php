@@ -10,7 +10,7 @@ class Localize implements FilterInterface
 
 	protected $remap = ['home', 'download', 'docs', 'community', 'contribute', 'help'];
 
-	public function before(RequestInterface $request)
+	public function before(RequestInterface $request, $arguments = null)
 	{
 		$uri = &$request->uri;
 		if (count($uri->getSegments()) > 0)
@@ -25,7 +25,7 @@ class Localize implements FilterInterface
 
 	//--------------------------------------------------------------------
 
-	public function after(RequestInterface $request, ResponseInterface $response)
+	public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
 	{
 		// Do something here
 	}
